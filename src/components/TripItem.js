@@ -7,6 +7,7 @@ function TripItem({ trip }) {
   const handleNevagation = () => {
     Nevagation(`/tripDetail/${trip.id}`);
   };
+
   return (
     <Link to={`/tripDetail/${trip.id}`}>
       <div className="col-md-6 col-lg-4 mb-5">
