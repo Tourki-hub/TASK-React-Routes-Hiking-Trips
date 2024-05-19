@@ -1,8 +1,14 @@
-import React from 'react';
-import tripsData from '../tripsData';
+import React from "react";
+import tripsData from "../tripsData";
+import { Navigate, useParams, useSearchParams } from "react-router-dom";
 
 function TripDetail() {
-  const trip = tripsData[0];
+  const { tripId } = useParams();
+  const tripFinder = tripsData.find((trip) => trip.id == tripId);
+  console.log(`${tripId} : ${tripFinder}`);
+  if (!tripFinder) {
+    return <Navigate to="/" />;
+  }
   return (
     <div className="modal-dialog modal-xl">
       <div className="modal-content">
@@ -11,7 +17,7 @@ function TripDetail() {
             <div className="row justify-content-center">
               <div className="col-lg-8">
                 <h2 className="portfolio-modal-title text-secondary text-uppercase mb-0">
-                  {trip.name}
+                  {tripFinder.name}
                 </h2>
                 <div className="divider-custom">
                   <div className="divider-custom-line"></div>
@@ -22,19 +28,19 @@ function TripDetail() {
                 </div>
                 <img
                   className="img-fluid rounded mb-5"
-                  src={trip.img}
+                  src={tripFinder.img}
                   alt="..."
                 />
                 <p className="mb-4">
-                  City : {trip.city}
+                  City : {tripFinder.city}
                   <br />
-                  Length : {trip.length1}Km
+                  Length : {tripFinder.length1}Km
                   <br />
-                  Rating : {trip.rating}
+                  Rating : {tripFinder.rating}
                   <br />
-                  Difficulty : {trip.difficulty}
+                  Difficulty : {tripFinder.difficulty}
                   <br />
-                  Details : {trip.details}
+                  Details : {tripFinder.details}
                 </p>
               </div>
             </div>
